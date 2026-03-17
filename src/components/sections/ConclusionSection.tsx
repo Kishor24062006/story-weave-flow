@@ -2,54 +2,83 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 
 const ConclusionSection = () => {
-  const [email, setEmail] = useState("");
+  const [callsign, setCallsign] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (email) setSubmitted(true);
+    if (callsign.trim()) setSubmitted(true);
   };
 
   return (
     <section
       className="relative min-h-screen flex items-center justify-center section-padding py-32"
-      aria-label="Conclusion"
+      aria-label="End of the Cycle"
     >
-      {/* Ambient glow */}
+      {/* Ambient red glow */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full bg-primary/[0.04] blur-[150px]" />
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[500px] h-[500px] rounded-full bg-primary/[0.04] blur-[150px]" />
       </div>
 
       <div className="relative max-w-3xl mx-auto text-center">
         <motion.p
-          className="text-primary font-body text-sm tracking-[0.25em] uppercase mb-4"
+          className="text-primary font-display text-xs tracking-[0.4em] uppercase mb-4"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
         >
-          The Surface
+          Chapter IV — End of the Cycle
         </motion.p>
 
         <motion.h2
-          className="font-display text-4xl md:text-5xl lg:text-7xl font-bold mb-8 leading-tight"
+          className="font-display text-4xl md:text-5xl lg:text-7xl font-bold mb-8 leading-[0.85] uppercase"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          Every Dive Begins
-          <span className="block gradient-text italic">With Curiosity</span>
+          The Real Doomsday<br />
+          <span className="gradient-text-red">Was Never The Monster</span>
         </motion.h2>
 
         <motion.p
-          className="text-muted-foreground text-lg md:text-xl leading-relaxed mb-12 max-w-xl mx-auto"
+          className="text-muted-foreground text-lg md:text-xl leading-relaxed mb-6 max-w-xl mx-auto"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          transition={{ delay: 0.15 }}
         >
-          The deep sea holds secrets that could reshape our understanding of life itself.
-          Join the voyage—stay informed about the latest discoveries from the deep.
+          One Avenger stepped forward. Not the strongest. Not the smartest. The one
+          who understood that some cycles can only be broken by choosing not to fight.
+        </motion.p>
+
+        <motion.p
+          className="text-foreground/70 text-base leading-relaxed mb-12 max-w-lg mx-auto italic"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.25 }}
+        >
+          "It was our endless war that created him. Our violence that fed him.
+          The only weapon left… was to stop."
+        </motion.p>
+
+        <motion.div
+          className="divider-glow w-32 mx-auto mb-12"
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, delay: 0.3 }}
+        />
+
+        <motion.p
+          className="text-primary font-display text-lg tracking-[0.2em] uppercase mb-10"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.4 }}
+        >
+          Will you break the cycle?
         </motion.p>
 
         <motion.form
@@ -58,49 +87,51 @@ const ConclusionSection = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.4 }}
+          transition={{ delay: 0.5 }}
         >
           {!submitted ? (
             <>
               <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="your@email.com"
-                className="flex-1 px-5 py-3.5 rounded-full bg-secondary border border-border text-foreground placeholder:text-muted-foreground font-body text-sm focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary/40 transition-all"
+                type="text"
+                value={callsign}
+                onChange={(e) => setCallsign(e.target.value)}
+                placeholder="Enter your callsign"
+                className="flex-1 px-5 py-3.5 rounded-sm bg-secondary border border-border text-foreground placeholder:text-muted-foreground font-body text-sm focus:outline-none focus:ring-1 focus:ring-primary/40 focus:border-primary/40 transition-all"
                 required
-                aria-label="Email address"
+                aria-label="Your callsign to join the resistance"
               />
               <motion.button
                 type="submit"
-                className="px-8 py-3.5 rounded-full bg-primary text-primary-foreground font-body text-sm font-medium tracking-wide"
-                whileHover={{ scale: 1.04 }}
+                className="px-8 py-3.5 rounded-sm bg-primary text-primary-foreground font-display text-xs tracking-[0.2em] uppercase"
+                whileHover={{ scale: 1.04, boxShadow: "0 0 30px hsl(0 85% 50% / 0.3)" }}
                 whileTap={{ scale: 0.97 }}
               >
-                Dive In
+                Join the Resistance
               </motion.button>
             </>
           ) : (
             <motion.div
-              className="w-full glass-surface rounded-full px-6 py-3.5 text-center"
+              className="w-full glass-surface-red rounded-sm px-6 py-4 text-center"
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
             >
-              <span className="text-primary text-sm">✓ You're on the list. The deep awaits.</span>
+              <span className="text-primary text-sm font-display tracking-wider">
+                CALLSIGN REGISTERED — THE RESISTANCE REMEMBERS
+              </span>
             </motion.div>
           )}
         </motion.form>
 
         {/* Footer */}
         <motion.div
-          className="mt-20 pt-8 border-t border-border/20"
+          className="mt-24 pt-8 border-t border-border/20"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.6 }}
         >
-          <p className="text-muted-foreground/50 text-xs tracking-wider">
-            THE DEEP SEA — AN IMMERSIVE EXPERIENCE
+          <p className="text-muted-foreground/40 text-xs tracking-[0.3em] font-display uppercase">
+            Doomsday: Avengers' Final Protocol — An Immersive Experience
           </p>
         </motion.div>
       </div>
