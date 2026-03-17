@@ -1,16 +1,55 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState, useEffect, useCallback } from "react";
+import { AnimatePresence } from "framer-motion";
+import Lenis from "lenis";
+import Loader from "@/components/Loader";
+import HeroSection from "@/components/sections/HeroSection";
+import IntroductionSection from "@/components/sections/IntroductionSection";
+import ExplorationSection from "@/components/sections/ExplorationSection";
+import InsightSection from "@/components/sections/InsightSection";
+import ConclusionSection from "@/components/sections/ConclusionSection";
 
-// IMPORTANT: Fully REPLACE this with your own code
-const PlaceholderIndex = () => {
-  // PLACEHOLDER: Replace this entire return statement with the user's app.
-  // The inline background color is intentionally not part of the design system.
+const Index = () => {
+  const [loading, setLoading] = useState(true);
+
+  const handleLoadComplete = useCallback(() => {
+    setLoading(false);
+  }, []);
+
+  useEffect(() => {
+    if (loading) return;
+
+    const lenis = new Lenis({
+      duration: 1.6,
+      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+    });
+
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    return () => lenis.destroy();
+  }, [loading]);
+
   return (
-    <div className="flex min-h-screen items-center justify-center" style={{ backgroundColor: '#fcfbf8' }}>
-      <img data-lovable-blank-page-placeholder="REMOVE_THIS" src="/placeholder.svg" alt="Your app will live here!" />
-    </div>
+    <>
+      <AnimatePresence>
+        {loading && <Loader onComplete={handleLoadComplete} />}
+      </AnimatePresence>
+
+      {!loading && (
+        <main>
+          <HeroSection />
+          <IntroductionSection />
+          <ExplorationSection />
+          <InsightSection />
+          <ConclusionSection />
+        </main>
+      )}
+    </>
   );
 };
-
-const Index = PlaceholderIndex;
 
 export default Index;
