@@ -102,6 +102,7 @@ const ConclusionSection = () => {
         <motion.form
           onSubmit={handleSubmit}
           className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto mb-8"
+          style={{ y: formY }}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}

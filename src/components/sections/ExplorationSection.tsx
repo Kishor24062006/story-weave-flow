@@ -133,7 +133,7 @@ const ExplorationSection = () => {
                     <div className="pt-4 mt-4 border-t border-border/30">
                       <p className="text-muted-foreground text-sm leading-relaxed mb-3">{zone.description}</p>
                       <p className="text-primary text-xs font-display tracking-wider italic">"{zone.moment}"</p>
-                    </div>
+      </motion.div>
                   </motion.div>
                 )}
               </AnimatePresence>

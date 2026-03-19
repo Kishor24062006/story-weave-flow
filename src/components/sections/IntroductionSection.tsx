@@ -107,7 +107,7 @@ const IntroductionSection = () => {
               Six figures against a burning sky. Same old story — except this time, 
               none of them thought they'd walk away.
             </motion.p>
-          </div>
+          </motion.div>
         </div>
 
         {/* Hero cards with antigravity float */}

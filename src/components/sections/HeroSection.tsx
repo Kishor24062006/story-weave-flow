@@ -104,6 +104,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.4, delay: 0.8, ease: "easeOut" }}
+          style={{ y: titleY }}
         >
           <span className="block text-foreground">The Sky Cracks.</span>
           <span className="block gradient-text-red">It Rises.</span>
