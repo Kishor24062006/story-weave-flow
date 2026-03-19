@@ -194,7 +194,7 @@ const InsightSection = () => {
                   Hulk's punches made it denser. Thor's lightning charged it. Wanda's hexes 
                   taught it magic. They weren't fighting a monster. They were building one.
                 </p>
-              </div>
+          </motion.div>
             </motion.div>
           </div>
         </div>
