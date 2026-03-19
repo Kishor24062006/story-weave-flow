@@ -20,8 +20,11 @@ const IntroductionSection = () => {
   const imgX = useTransform(scrollYProgress, [0, 1], [30, -30]);
   const imgY = useTransform(scrollYProgress, [0, 1], [40, -40]);
   
-  // Antigravity float for hero cards
-  const cardsY = useTransform(scrollYProgress, [0.3, 0.7], [60, -20]);
+  // Antigravity — elements float upward at different speeds
+  const cardsY = useTransform(scrollYProgress, [0.2, 0.8], [100, -60]);
+  const titleY = useTransform(scrollYProgress, [0.1, 0.7], [60, -80]);
+  const textY = useTransform(scrollYProgress, [0.15, 0.75], [50, -50]);
+  const yearBadgeY = useTransform(scrollYProgress, [0.1, 0.6], [30, -40]);
 
   return (
     <section
