@@ -145,7 +145,7 @@ const InsightSection = () => {
           </div>
 
           {/* Right: Quotes */}
-          <div className="space-y-4">
+          <motion.div className="space-y-4" style={{ y: quotesY }}>
             {perspective === "hero" ? (
               heroQuotes.map((q, i) => (
                 <motion.div
