@@ -31,6 +31,7 @@ const ConclusionSection = () => {
           className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full bg-primary/[0.05] blur-[150px]"
           animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.6, 0.3] }}
           transition={{ duration: 5, repeat: Infinity }}
+          style={{ y: glowY }}
         />
       </div>
 
