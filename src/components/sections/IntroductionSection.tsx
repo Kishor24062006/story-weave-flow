@@ -67,7 +67,7 @@ const IntroductionSection = () => {
           </motion.div>
 
           {/* Text */}
-          <div>
+          <motion.div style={{ y: titleY }}>
             <motion.p
               className="text-primary font-display text-xs tracking-[0.4em] uppercase mb-4"
               initial={{ opacity: 0 }}
