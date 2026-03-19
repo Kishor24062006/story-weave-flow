@@ -44,7 +44,7 @@ const InsightSection = () => {
       className="relative min-h-screen section-padding py-32 lg:py-40 overflow-hidden"
       aria-label="The Evolution Paradox"
     >
-      <div className="max-w-7xl mx-auto">
+      <motion.div className="max-w-7xl mx-auto" style={{ y: headerY }}>
         <motion.p
           className="text-primary font-display text-xs tracking-[0.4em] uppercase mb-4"
           initial={{ opacity: 0 }}
