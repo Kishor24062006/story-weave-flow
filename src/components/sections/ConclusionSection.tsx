@@ -10,8 +10,18 @@ const ConclusionSection = () => {
     if (callsign.trim()) setSubmitted(true);
   };
 
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+
+  // Antigravity — content lifts as you scroll in
+  const titleY = useTransform(scrollYProgress, [0.1, 0.5], [80, -40]);
+  const textY = useTransform(scrollYProgress, [0.15, 0.55], [60, -30]);
+  const formY = useTransform(scrollYProgress, [0.2, 0.6], [50, -20]);
+  const glowY = useTransform(scrollYProgress, [0, 0.5], [100, -60]);
+
   return (
     <section
+      ref={ref}
       className="relative min-h-screen flex items-center justify-center section-padding py-32 overflow-hidden"
       aria-label="End of the Cycle"
     >
