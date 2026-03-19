@@ -103,7 +103,7 @@ const InsightSection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           {/* Left: Image + Power bars */}
           <div>
-            <div className="rounded-sm overflow-hidden mb-10 relative">
+            <motion.div className="rounded-sm overflow-hidden mb-10 relative" style={{ y: imageY }}>
               <motion.img
                 src={doomsdayImage}
                 alt="Doomsday absorbing energy, glowing red"
