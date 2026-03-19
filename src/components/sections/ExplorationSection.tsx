@@ -67,7 +67,7 @@ const ExplorationSection = () => {
         />
       </div>
 
-      <div className="relative max-w-7xl mx-auto">
+      <motion.div className="relative max-w-7xl mx-auto" style={{ y: headerY }}>
         <motion.p
           className="text-primary font-display text-xs tracking-[0.4em] uppercase mb-4"
           initial={{ opacity: 0 }}
