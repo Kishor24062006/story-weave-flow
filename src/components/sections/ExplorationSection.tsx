@@ -145,7 +145,7 @@ const ExplorationSection = () => {
             </motion.button>
           ))}
         </motion.div>
-      </div>
+      </motion.div>
     </section>
   );
 };
