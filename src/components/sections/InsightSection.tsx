@@ -11,28 +11,33 @@ const powerData = [
 ];
 
 const heroQuotes = [
-  { hero: "Iron Man", quote: "Every weapon I fire, he absorbs. I'm literally arming the enemy.", icon: "🔴" },
-  { hero: "Thor", quote: "He took Mjolnir's lightning and threw it back. With interest.", icon: "⚡" },
-  { hero: "Scarlet Witch", quote: "I tried to unmake him. He unmade my spell instead.", icon: "🔮" },
-  { hero: "Hulk", quote: "For the first time in my life… I don't want to fight.", icon: "💚" },
+  { hero: "Stark", quote: "Every shot I fire, he copies. I'm handing him weapons.", icon: "🔴" },
+  { hero: "Thor", quote: "He caught Mjolnir's lightning. Threw it back harder.", icon: "⚡" },
+  { hero: "Wanda", quote: "I tried to erase him. He erased my spell.", icon: "🔮" },
+  { hero: "Hulk", quote: "First time I ever wanted to stop fighting.", icon: "💚" },
 ];
 
 const doomQuotes = [
-  { quote: "Each blow teaches me. Each death makes me immortal.", label: "After Antarctica" },
-  { quote: "Your Hulk gave me strength. Your witch gave me chaos. Your god gave me thunder. What will you give me, soldier?", label: "To Captain America" },
-  { quote: "I don't destroy civilizations. I evolve past them.", label: "Broadcast to Earth" },
+  { quote: "Every blow you land teaches me. Every death I die makes me permanent.", label: "After Antarctica" },
+  { quote: "Your Hulk taught me strength. Your witch taught me chaos. What will you teach me, soldier?", label: "To Cap" },
+  { quote: "I don't destroy worlds. I outgrow them.", label: "Global Broadcast" },
 ];
 
 const InsightSection = () => {
   const [perspective, setPerspective] = useState<"hero" | "doom">("hero");
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
-  const imgScale = useTransform(scrollYProgress, [0, 0.5], [0.92, 1]);
+  
+  // Slow cinematic zoom on the image
+  const imgScale = useTransform(scrollYProgress, [0, 0.6], [1.2, 1]);
+  const imgRotate = useTransform(scrollYProgress, [0, 1], [-1, 1]);
+  // Floating effect for the power bars
+  const barsY = useTransform(scrollYProgress, [0.2, 0.6], [40, -10]);
 
   return (
     <section
       ref={ref}
-      className="relative min-h-screen section-padding py-32 lg:py-40"
+      className="relative min-h-screen section-padding py-32 lg:py-40 overflow-hidden"
       aria-label="The Evolution Paradox"
     >
       <div className="max-w-7xl mx-auto">
@@ -42,7 +47,7 @@ const InsightSection = () => {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
         >
-          Chapter III — The Evolution Paradox
+          Chapter III — The Paradox
         </motion.p>
         <motion.h2
           className="font-display text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-[0.9] uppercase max-w-4xl"
@@ -50,16 +55,16 @@ const InsightSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          Every Attack Makes Him <span className="gradient-text-red">Stronger</span>
+          Hit It Harder. <span className="gradient-text-red">It Gets Stronger.</span>
         </motion.h2>
         <motion.p
-          className="text-muted-foreground text-lg mb-12 max-w-2xl"
+          className="text-muted-foreground text-lg mb-12 max-w-xl"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
         >
-          The paradox that broke the Avengers: fighting Doomsday is the very thing that makes him invincible.
+          The thing that broke the Avengers wasn't losing — it was realizing that winning was impossible.
         </motion.p>
 
         {/* Perspective toggle */}
@@ -77,7 +82,7 @@ const InsightSection = () => {
                 : "text-muted-foreground hover:text-foreground"
             }`}
           >
-            Hero Perspective
+            Their Side
           </button>
           <button
             onClick={() => setPerspective("doom")}
@@ -87,26 +92,27 @@ const InsightSection = () => {
                 : "text-muted-foreground hover:text-foreground"
             }`}
           >
-            Doomsday Perspective
+            Its Side
           </button>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           {/* Left: Image + Power bars */}
           <div>
-            <motion.div className="rounded-sm overflow-hidden mb-10 relative" style={{ scale: imgScale }}>
-              <img
+            <div className="rounded-sm overflow-hidden mb-10 relative">
+              <motion.img
                 src={doomsdayImage}
-                alt="Doomsday absorbing heroes' powers, glowing with red energy"
+                alt="Doomsday absorbing energy, glowing red"
                 className="w-full h-[350px] lg:h-[420px] object-cover"
                 loading="lazy"
+                style={{ scale: imgScale, rotate: imgRotate }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
-            </motion.div>
+            </div>
 
-            {/* Power comparison bars */}
-            <div className="space-y-4">
-              <p className="text-muted-foreground text-xs font-display tracking-[0.3em] uppercase mb-2">Power Comparison</p>
+            {/* Power comparison */}
+            <motion.div className="space-y-4" style={{ y: barsY }}>
+              <p className="text-muted-foreground text-xs font-display tracking-[0.3em] uppercase mb-2">Power Levels</p>
               {powerData.map((stat, i) => (
                 <motion.div
                   key={stat.label}
@@ -131,7 +137,7 @@ const InsightSection = () => {
                   </div>
                 </motion.div>
               ))}
-            </div>
+            </motion.div>
           </div>
 
           {/* Right: Quotes */}
@@ -179,12 +185,10 @@ const InsightSection = () => {
               transition={{ delay: 0.5 }}
             >
               <div className="glass-surface-red rounded-sm p-6">
-                <p className="text-primary text-xs font-display tracking-[0.2em] uppercase mb-2">The Paradox</p>
+                <p className="text-primary text-xs font-display tracking-[0.2em] uppercase mb-2">The Catch</p>
                 <p className="text-muted-foreground text-sm leading-relaxed">
-                  Doomsday doesn't just resist attacks — he absorbs them. Every punch from Hulk
-                  increased his density. Every lightning bolt from Thor charged his cells. Every
-                  hex from Scarlet Witch expanded his reality-warping potential. The Avengers
-                  weren't fighting a monster. They were building one.
+                  Hulk's punches made it denser. Thor's lightning charged it. Wanda's hexes 
+                  taught it magic. They weren't fighting a monster. They were building one.
                 </p>
               </div>
             </motion.div>

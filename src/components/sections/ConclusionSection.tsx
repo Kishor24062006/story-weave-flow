@@ -12,12 +12,16 @@ const ConclusionSection = () => {
 
   return (
     <section
-      className="relative min-h-screen flex items-center justify-center section-padding py-32"
+      className="relative min-h-screen flex items-center justify-center section-padding py-32 overflow-hidden"
       aria-label="End of the Cycle"
     >
       {/* Ambient red glow */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[500px] h-[500px] rounded-full bg-primary/[0.04] blur-[150px]" />
+        <motion.div
+          className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full bg-primary/[0.05] blur-[150px]"
+          animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.6, 0.3] }}
+          transition={{ duration: 5, repeat: Infinity }}
+        />
       </div>
 
       <div className="relative max-w-3xl mx-auto text-center">
@@ -37,8 +41,8 @@ const ConclusionSection = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          The Real Doomsday<br />
-          <span className="gradient-text-red">Was Never The Monster</span>
+          The Monster<br />
+          <span className="gradient-text-red">Was Never The Point</span>
         </motion.h2>
 
         <motion.p
@@ -48,8 +52,9 @@ const ConclusionSection = () => {
           viewport={{ once: true }}
           transition={{ delay: 0.15 }}
         >
-          One Avenger stepped forward. Not the strongest. Not the smartest. The one
-          who understood that some cycles can only be broken by choosing not to fight.
+          One of them stepped forward. Not the strongest. Not the smartest. 
+          The one who figured out you can't beat something that feeds on war — 
+          by waging more war.
         </motion.p>
 
         <motion.p
@@ -59,8 +64,8 @@ const ConclusionSection = () => {
           viewport={{ once: true }}
           transition={{ delay: 0.25 }}
         >
-          "It was our endless war that created him. Our violence that fed him.
-          The only weapon left… was to stop."
+          "We made it. Our fists, our rage, our refusal to stop fighting — 
+          that's what it ate. So I stopped."
         </motion.p>
 
         <motion.div
@@ -78,7 +83,7 @@ const ConclusionSection = () => {
           viewport={{ once: true }}
           transition={{ delay: 0.4 }}
         >
-          Will you break the cycle?
+          Can you break the cycle?
         </motion.p>
 
         <motion.form
@@ -95,10 +100,10 @@ const ConclusionSection = () => {
                 type="text"
                 value={callsign}
                 onChange={(e) => setCallsign(e.target.value)}
-                placeholder="Enter your callsign"
+                placeholder="Your callsign"
                 className="flex-1 px-5 py-3.5 rounded-sm bg-secondary border border-border text-foreground placeholder:text-muted-foreground font-body text-sm focus:outline-none focus:ring-1 focus:ring-primary/40 focus:border-primary/40 transition-all"
                 required
-                aria-label="Your callsign to join the resistance"
+                aria-label="Your callsign"
               />
               <motion.button
                 type="submit"
@@ -116,13 +121,12 @@ const ConclusionSection = () => {
               animate={{ scale: 1, opacity: 1 }}
             >
               <span className="text-primary text-sm font-display tracking-wider">
-                CALLSIGN REGISTERED — THE RESISTANCE REMEMBERS
+                REGISTERED — THE RESISTANCE REMEMBERS
               </span>
             </motion.div>
           )}
         </motion.form>
 
-        {/* Footer */}
         <motion.div
           className="mt-24 pt-8 border-t border-border/20"
           initial={{ opacity: 0 }}
@@ -131,7 +135,7 @@ const ConclusionSection = () => {
           transition={{ delay: 0.6 }}
         >
           <p className="text-muted-foreground/40 text-xs tracking-[0.3em] font-display uppercase">
-            Doomsday: Avengers' Final Protocol — An Immersive Experience
+            Doomsday: Avengers' Final Protocol
           </p>
         </motion.div>
       </div>
