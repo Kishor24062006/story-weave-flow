@@ -51,6 +51,7 @@ const ConclusionSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
+          style={{ y: titleY }}
         >
           The Monster<br />
           <span className="gradient-text-red">Was Never The Point</span>
