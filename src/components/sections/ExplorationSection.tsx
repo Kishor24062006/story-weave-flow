@@ -51,8 +51,9 @@ const ExplorationSection = () => {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
   
-  // Parallax stagger for cards
-  const gridY = useTransform(scrollYProgress, [0, 0.5], [80, 0]);
+  // Antigravity — everything floats up at different speeds
+  const headerY = useTransform(scrollYProgress, [0.05, 0.5], [80, -60]);
+  const gridY = useTransform(scrollYProgress, [0.15, 0.7], [120, -40]);
   const gridRotate = useTransform(scrollYProgress, [0, 0.4], [2, 0]);
 
   return (
@@ -66,7 +67,7 @@ const ExplorationSection = () => {
         />
       </div>
 
-      <div className="relative max-w-7xl mx-auto">
+      <motion.div className="relative max-w-7xl mx-auto" style={{ y: headerY }}>
         <motion.p
           className="text-primary font-display text-xs tracking-[0.4em] uppercase mb-4"
           initial={{ opacity: 0 }}
@@ -144,7 +145,7 @@ const ExplorationSection = () => {
             </motion.button>
           ))}
         </motion.div>
-      </div>
+      </motion.div>
     </section>
   );
 };

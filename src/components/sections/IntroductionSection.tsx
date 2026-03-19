@@ -20,8 +20,11 @@ const IntroductionSection = () => {
   const imgX = useTransform(scrollYProgress, [0, 1], [30, -30]);
   const imgY = useTransform(scrollYProgress, [0, 1], [40, -40]);
   
-  // Antigravity float for hero cards
-  const cardsY = useTransform(scrollYProgress, [0.3, 0.7], [60, -20]);
+  // Antigravity — elements float upward at different speeds
+  const cardsY = useTransform(scrollYProgress, [0.2, 0.8], [100, -60]);
+  const titleY = useTransform(scrollYProgress, [0.1, 0.7], [60, -80]);
+  const textY = useTransform(scrollYProgress, [0.15, 0.75], [50, -50]);
+  const yearBadgeY = useTransform(scrollYProgress, [0.1, 0.6], [30, -40]);
 
   return (
     <section
@@ -51,6 +54,7 @@ const IntroductionSection = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
               <motion.div
                 className="absolute bottom-6 left-6 glass-surface-red rounded-sm p-4"
+                style={{ y: yearBadgeY }}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -63,7 +67,7 @@ const IntroductionSection = () => {
           </motion.div>
 
           {/* Text */}
-          <div>
+          <motion.div style={{ y: titleY }}>
             <motion.p
               className="text-primary font-display text-xs tracking-[0.4em] uppercase mb-4"
               initial={{ opacity: 0 }}
@@ -103,7 +107,7 @@ const IntroductionSection = () => {
               Six figures against a burning sky. Same old story — except this time, 
               none of them thought they'd walk away.
             </motion.p>
-          </div>
+          </motion.div>
         </div>
 
         {/* Hero cards with antigravity float */}

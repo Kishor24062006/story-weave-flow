@@ -31,8 +31,12 @@ const InsightSection = () => {
   // Slow cinematic zoom on the image
   const imgScale = useTransform(scrollYProgress, [0, 0.6], [1.2, 1]);
   const imgRotate = useTransform(scrollYProgress, [0, 1], [-1, 1]);
-  // Floating effect for the power bars
-  const barsY = useTransform(scrollYProgress, [0.2, 0.6], [40, -10]);
+  
+  // Antigravity — layered float speeds
+  const headerY = useTransform(scrollYProgress, [0.05, 0.5], [70, -60]);
+  const barsY = useTransform(scrollYProgress, [0.15, 0.65], [80, -30]);
+  const quotesY = useTransform(scrollYProgress, [0.2, 0.7], [100, -40]);
+  const imageY = useTransform(scrollYProgress, [0.1, 0.6], [50, -50]);
 
   return (
     <section
@@ -40,7 +44,7 @@ const InsightSection = () => {
       className="relative min-h-screen section-padding py-32 lg:py-40 overflow-hidden"
       aria-label="The Evolution Paradox"
     >
-      <div className="max-w-7xl mx-auto">
+      <motion.div className="max-w-7xl mx-auto" style={{ y: headerY }}>
         <motion.p
           className="text-primary font-display text-xs tracking-[0.4em] uppercase mb-4"
           initial={{ opacity: 0 }}
@@ -99,7 +103,7 @@ const InsightSection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           {/* Left: Image + Power bars */}
           <div>
-            <div className="rounded-sm overflow-hidden mb-10 relative">
+            <motion.div className="rounded-sm overflow-hidden mb-10 relative" style={{ y: imageY }}>
               <motion.img
                 src={doomsdayImage}
                 alt="Doomsday absorbing energy, glowing red"
@@ -108,7 +112,7 @@ const InsightSection = () => {
                 style={{ scale: imgScale, rotate: imgRotate }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
-            </div>
+            </motion.div>
 
             {/* Power comparison */}
             <motion.div className="space-y-4" style={{ y: barsY }}>
@@ -141,7 +145,7 @@ const InsightSection = () => {
           </div>
 
           {/* Right: Quotes */}
-          <div className="space-y-4">
+          <motion.div className="space-y-4" style={{ y: quotesY }}>
             {perspective === "hero" ? (
               heroQuotes.map((q, i) => (
                 <motion.div
@@ -192,9 +196,9 @@ const InsightSection = () => {
                 </p>
               </div>
             </motion.div>
-          </div>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };

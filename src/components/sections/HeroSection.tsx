@@ -44,9 +44,14 @@ const HeroSection = () => {
 
   // Cinematic zoom — image slowly pushes toward viewer on scroll
   const scale = useTransform(scrollYProgress, [0, 1], [1, 1.4]);
-  const y = useTransform(scrollYProgress, [0, 1], [0, 200]);
   const opacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
   const imgBrightness = useTransform(scrollYProgress, [0, 0.8], [1, 0.3]);
+
+  // Antigravity — content floats upward as you scroll down
+  const contentY = useTransform(scrollYProgress, [0, 1], [0, -120]);
+  const titleY = useTransform(scrollYProgress, [0, 1], [0, -180]);
+  const subtitleY = useTransform(scrollYProgress, [0, 1], [0, -80]);
+  const ctaY = useTransform(scrollYProgress, [0, 1], [0, -50]);
 
   return (
     <section
@@ -83,7 +88,7 @@ const HeroSection = () => {
       {/* Content */}
       <motion.div
         className="relative z-10 text-center section-padding max-w-5xl mx-auto"
-        style={{ opacity, y }}
+        style={{ opacity, y: contentY }}
       >
         <motion.p
           className="text-primary font-display text-xs md:text-sm tracking-[0.5em] uppercase mb-6"
@@ -99,6 +104,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.4, delay: 0.8, ease: "easeOut" }}
+          style={{ y: titleY }}
         >
           <span className="block text-foreground">The Sky Cracks.</span>
           <span className="block gradient-text-red">It Rises.</span>
