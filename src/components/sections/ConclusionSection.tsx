@@ -59,6 +59,7 @@ const ConclusionSection = () => {
 
         <motion.p
           className="text-muted-foreground text-lg md:text-xl leading-relaxed mb-6 max-w-xl mx-auto"
+          style={{ y: textY }}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
