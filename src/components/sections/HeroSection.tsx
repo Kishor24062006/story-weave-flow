@@ -88,7 +88,7 @@ const HeroSection = () => {
       {/* Content */}
       <motion.div
         className="relative z-10 text-center section-padding max-w-5xl mx-auto"
-        style={{ opacity, y }}
+        style={{ opacity, y: contentY }}
       >
         <motion.p
           className="text-primary font-display text-xs md:text-sm tracking-[0.5em] uppercase mb-6"
