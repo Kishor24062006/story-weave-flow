@@ -112,7 +112,7 @@ const InsightSection = () => {
                 style={{ scale: imgScale, rotate: imgRotate }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
-            </div>
+            </motion.div>
 
             {/* Power comparison */}
             <motion.div className="space-y-4" style={{ y: barsY }}>
