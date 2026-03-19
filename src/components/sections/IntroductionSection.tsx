@@ -54,6 +54,7 @@ const IntroductionSection = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
               <motion.div
                 className="absolute bottom-6 left-6 glass-surface-red rounded-sm p-4"
+                style={{ y: yearBadgeY }}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
