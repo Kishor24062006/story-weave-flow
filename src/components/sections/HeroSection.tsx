@@ -44,9 +44,14 @@ const HeroSection = () => {
 
   // Cinematic zoom — image slowly pushes toward viewer on scroll
   const scale = useTransform(scrollYProgress, [0, 1], [1, 1.4]);
-  const y = useTransform(scrollYProgress, [0, 1], [0, 200]);
   const opacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
   const imgBrightness = useTransform(scrollYProgress, [0, 0.8], [1, 0.3]);
+
+  // Antigravity — content floats upward as you scroll down
+  const contentY = useTransform(scrollYProgress, [0, 1], [0, -120]);
+  const titleY = useTransform(scrollYProgress, [0, 1], [0, -180]);
+  const subtitleY = useTransform(scrollYProgress, [0, 1], [0, -80]);
+  const ctaY = useTransform(scrollYProgress, [0, 1], [0, -50]);
 
   return (
     <section
